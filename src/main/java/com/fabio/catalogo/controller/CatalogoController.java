@@ -80,10 +80,10 @@ public class CatalogoController {
 
         if(result.hasErrors()){
             attributes.addFlashAttribute("mensagem","Alteração - campos obrigatórios não preenchidos!");
-            return "redirect:/musicas";
+            return "redirect:/musicas/alterar/{id}";
         }
 
-        musica.setData(LocalDate.now());
+        musica.setData(LocalDate.now()); // atualizar data/hora
         catalogoService.update(musica);
         return "redirect:/musicas";
     }
