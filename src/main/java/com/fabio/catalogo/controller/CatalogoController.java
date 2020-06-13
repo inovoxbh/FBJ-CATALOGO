@@ -67,4 +67,24 @@ public class CatalogoController {
         return "redirect:/musicas";
     }        
     
+    @RequestMapping(value="/musicas/alterar/{id}", method=RequestMethod.GET)
+    public ModelAndView getAlterarMusicaForm(@PathVariable("id") long id) {
+        ModelAndView mv = new ModelAndView("alterarMusicaForm");
+        Musica musica = catalogoService.findById(id);
+        mv.addObject("musica", musica);
+        return mv;
+    }
+
+    @RequestMapping(value="/musicas/alterar/{id}", method=RequestMethod.POST)
+    public String alterarMusica(@Valid Musica musica, BindingResult result, RedirectAttributes attributes) {
+
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("mensagem","Alteração - campos obrigatórios não preenchidos!");
+            return "redirect:/musicas";
+        }
+
+        musica.setData(LocalDate.now());
+        catalogoService.update(musica);
+        return "redirect:/musicas";
+    }
 }

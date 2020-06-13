@@ -35,4 +35,9 @@ public class CatalogoServiceImpl implements CatalogoService {
         Musica musica = catalogoRepository.findById(id).get();
         catalogoRepository.delete(musica);
     }
+
+    @Override
+    public void update(Musica musica) {
+        catalogoRepository.save(musica);
+    }
 }

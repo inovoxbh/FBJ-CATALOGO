@@ -9,4 +9,5 @@ public interface CatalogoService {
     Musica findById(long id);
     Musica save(Musica musica);    
     void delete(long id);    
+    void update(Musica musica);    
 }

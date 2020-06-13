@@ -13,6 +13,7 @@
         </nav>        
     </header>
     <div><th:block th:include="mensagemExcluidoSucesso"></th:block></div>
+    <div><th:block th:include="mensagemErro"></th:block></div>
     <section>
         <div class="container"  style="width: 60%; padding-bottom: 30px;">
          <div class="card" style="margin-top: 20px;" th:each="musica : ${musicas} ">
@@ -27,9 +28,13 @@
                    <p class="card-text"> <span th:utext="${#strings.abbreviate(musica.letra, 200)} "></span></p>
 
                    <form th:action="${(#mvc.url('CC#deletarMusica').arg(0, musica.id)).build()}" method="post">
-                        <button type="submit" class="btn btn-danger" style="margin-top: 10px;">Deletar</button>
+                       <button type="submit" class="btn btn-danger" style="margin-top: 10px;">Deletar</button>
                    </form>
-             </div>
+
+                   <form th:action="${(#mvc.url('CC#getAlterarMusicaForm').arg(0, musica.id)).build()}" method="get">
+                       <button type="submit" class="btn btn-success" style="margin-top: 10px;">Alterar</button>
+                   </form>
+                </div>
            </div>
        </div>
      </section>    
